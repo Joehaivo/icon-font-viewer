@@ -17,7 +17,7 @@ class IconFontViewerProvider: FileEditorProvider, DumbAware {
     }
 
     override fun createEditor(project: Project, file: VirtualFile): FileEditor {
-        return IconFontViewerKt(project, file)
+        return IconFontViewerImpl(project, file)
     }
 
 

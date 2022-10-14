@@ -3,11 +3,6 @@
     <name>Icon Font Viewer</name>
     <vendor email="haivo@foxmail.com" url="https://www.github.com/Joehaivo">Github Joehaivo</vendor>
 
-    <description><![CDATA[
-    A Intellij platform plugin to view truetype font file(.ttf) that includes icon glyphs usually.<br>
-    <em></em>
-    ]]></description>
-
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>

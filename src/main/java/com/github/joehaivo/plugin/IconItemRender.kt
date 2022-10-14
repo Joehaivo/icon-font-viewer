@@ -14,6 +14,6 @@ class IconItemRender(var font1: Font): JComponent(), ListCellRenderer<IconVo> {
         isSelected: Boolean,
         cellHasFocus: Boolean
     ): Component {
-        return IconItemView(IconFontGlyph(font1, value)).getComponent(0)
+        return IconFontItemImpl(IconFontGlyph(font1, value)).getComponent(0)
     }
 }

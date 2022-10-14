@@ -1,7 +1,11 @@
 ## Icon Font Viewer
 
-> 一个用于查看.ttf字体文件的Intellij平台(支持IDEA/Android Studio等)的插件，通常用于展示iconfont字符
-> 
-> A Intellij platform plugin to view truetype font file(.ttf) that includes icon glyphs usually.
+> A plugin for displaying the svg icons and unicode of trueType (.ttf) file that usually containing icon glyphs, such as iconfont.ttf file
 
-![img.png](img.png)
+> 一个用来展示trueType(.ttf)文件中的SVG图标和unicode码点的插件，比如说iconfont.ttf文件
+
+### usage
+- open .ttf file to view.
+- 打开.ttf文件查看.
+
+![img.png](docs/screenshot.png)
