@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.github.Joehaivo.icon-font-viewer</id>
     <name>Icon Font Viewer</name>
-    <vendor email="haivo@foxmail.com" url="https://www.github.com/Joehaivo">Github Joehaivo</vendor>
+    <vendor email="haivo@foxmail.com" url="https://www.github.com/Joehaivo">Joehaivo</vendor>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
