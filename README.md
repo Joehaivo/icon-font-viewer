@@ -4,6 +4,9 @@
 
 > 一个用来展示trueType(.ttf)文件中的SVG图标和unicode码点的插件，比如说iconfont.ttf文件
 
+### installation
+- It is available in *[Jetbrains Marketplace](https://plugins.jetbrains.com/plugin/19274-icon-font-viewer)* now, click hyperlink to get it.
+- 此插件已上架Jetbrains插件商城，前往 *[Jetbrains Marketplace](https://plugins.jetbrains.com/plugin/19274-icon-font-viewer)* 下载
 ### usage
 - open .ttf file to view.
 - 打开.ttf文件查看.
