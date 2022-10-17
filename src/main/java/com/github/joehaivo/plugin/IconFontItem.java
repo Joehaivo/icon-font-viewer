@@ -1,11 +1,7 @@
 package com.github.joehaivo.plugin;
 
-import com.intellij.openapi.vcs.changes.ignore.util.RegexUtil;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class IconFontItem extends JComponent {
     protected JPanel rootPanel;

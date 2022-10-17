@@ -31,13 +31,17 @@ tasks {
         pluginDescription.set("""
             A plugin for displaying the svg icons and unicode of trueType (.ttf) file that usually containing icon glyphs.<br><br>
             一个用来展示trueType(.ttf)文件中的SVG图标和unicode码点的插件<br>
+            <img src="https://github.com/Joehaivo/icon-font-viewer/blob/master/docs/1665853268900.png?raw=true" alt="screenshot" width="400" height="271"><br>
             <a href="https://github.com/Joehaivo/icon-font-viewer">Github Source Code</a><br><br>
+            <a href="https://github.com/Joehaivo/icon-font-viewer/blob/master/docs/iconfont.ttf?raw=true">Here is a sample icon font(.ttf) file</a><br>
+            <a href="https://github.com/Joehaivo/icon-font-viewer/blob/master/docs/iconfont.ttf?raw=true">这有一个示例icon font(.ttf)文件</a><br>
             usage: open .ttf file to view.<br>
             用法：打开.ttf文件查看.<br><br>
         """.trimIndent())
-//        changeNotes.set("""
-//        Add IconFontViewer plugin.<br>
-//        """.trimIndent())
+        changeNotes.set("""
+        1.0.8: fix: display garbled text when searching; Compatible with earlier versions<br>
+        1.0.8: fix: 搜索时文字显示乱码; 兼容更早的版本<br>
+        """.trimIndent())
         sinceBuild.set("201")
         untilBuild.set("223")
     }

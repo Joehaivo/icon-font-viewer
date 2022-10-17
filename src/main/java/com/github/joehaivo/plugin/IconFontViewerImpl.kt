@@ -120,8 +120,8 @@ class IconFontViewerImpl(var project: Project, var ttfFile: VirtualFile) : IconF
             return
         }
         val foundIcons = iconVos.filter {
-            it.postScript.lowercase(Locale.getDefault()).contains(keyword)
-                    || "&#x${String.format("%04x", it.codePoint.code)};".contains(keyword)
+            it.postScript.lowercase().contains(keyword)
+                    || it.getCodePointText().contains(keyword)
         }
         listModel.clear()
         foundIcons.forEach { it.keyword = keyword }
