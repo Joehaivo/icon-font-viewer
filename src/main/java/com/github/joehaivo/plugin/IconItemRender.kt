@@ -2,6 +2,7 @@ package com.github.joehaivo.plugin
 
 import com.intellij.ui.Colors
 import com.intellij.ui.dsl.builder.Align
+import com.intellij.ui.dsl.builder.TopGap
 import com.intellij.ui.dsl.builder.panel
 import java.awt.Component
 import java.awt.Font
@@ -21,7 +22,7 @@ class IconItemRender(var myFont: Font) : JComponent(), ListCellRenderer<IconVo> 
         return panel {
             row {
                 cell(IconFontGlyph(myFont, iconVo)).align(Align.CENTER)
-            }
+            }.topGap(TopGap.MEDIUM)
             row {
                 text(getHighlightText(iconVo.keyword, iconVo.getCodePointTextHex())).align(Align.CENTER)
             }
@@ -29,9 +30,9 @@ class IconItemRender(var myFont: Font) : JComponent(), ListCellRenderer<IconVo> 
                 text(getHighlightText(iconVo.keyword, iconVo.getCodePointTextInt())).align(Align.CENTER)
             }
             row {
-                text(getHighlightText(iconVo.keyword, iconVo.postScript)).align(Align.CENTER)
+                text(getHighlightText(iconVo.keyword, iconVo.postScript).ifBlank { "-" }).align(Align.CENTER)
             }
-        }.withBorder(BorderFactory.createLineBorder(Colors.DISABLED_COLOR, 1, true))
+        }.withBorder(BorderFactory.createLineBorder(Colors.DISABLED_COLOR, 1, false))
     }
 
     /**

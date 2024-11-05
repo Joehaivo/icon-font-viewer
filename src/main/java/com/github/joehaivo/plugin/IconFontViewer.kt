@@ -1,5 +1,7 @@
 package com.github.joehaivo.plugin
 
+import com.intellij.openapi.application.runReadAction
+import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.fileEditor.FileEditor
 import com.intellij.openapi.fileEditor.FileEditorLocation
 import com.intellij.openapi.fileEditor.FileEditorState
@@ -72,7 +74,7 @@ class IconFontViewer(var project: Project, var ttfFile: VirtualFile) : FileEdito
             }
 
             fun valueChanged() {
-                try {
+                runWriteAction {
                     val keyword = tf.component.text.trim().lowercase(Locale.getDefault())
                     iconVos.forEach { it.keyword = "" }
                     if (keyword.isBlank()) {
@@ -82,20 +84,18 @@ class IconFontViewer(var project: Project, var ttfFile: VirtualFile) : FileEdito
                     } else {
                         doSearch(keyword, listModel)
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
                 }
             }
         })
     }
 
     private fun setUI() {
-        try {
+        runReadAction {
             // 此处更改icon大小
-            font = Font.createFont(Font.TRUETYPE_FONT, ttfFile.inputStream).deriveFont(35f)
+            font = Font.createFont(Font.TRUETYPE_FONT, ttfFile.inputStream).deriveFont(40f)
             if (font == null) {
                 model.fontName = "Unable to parse the file."
-                return
+                return@runReadAction
             }
             model.fontName = font!!.fontName
 
@@ -103,8 +103,6 @@ class IconFontViewer(var project: Project, var ttfFile: VirtualFile) : FileEdito
             if (iconVos.isNotEmpty()) {
                 listModel.addAll(iconVos)
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 
@@ -113,6 +111,8 @@ class IconFontViewer(var project: Project, var ttfFile: VirtualFile) : FileEdito
         jListIcons.layoutOrientation = JList.HORIZONTAL_WRAP
         jListIcons.visibleRowCount = -1
         jListIcons.model = listModel
+        jListIcons.fixedCellWidth = 140
+        jListIcons.fixedCellHeight = 165
         jListIcons.cellRenderer = IconItemRender(font!!)
         jListIcons.isFocusable = true
         return jListIcons
