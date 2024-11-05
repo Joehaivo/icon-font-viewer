@@ -1,8 +1,8 @@
 ## Icon Font Viewer
 
-> A plugin for displaying the svg icons and unicode of trueType (.ttf) file that usually containing icon glyphs.
+> Display the icons (or symbols), characters, and Unicode code point information inside a TTF font file.
 
-> 一个用来展示trueType(.ttf)文件中的SVG图标和unicode码点的插件.
+> 展示ttf字体文件内的icon(或者叫symbol)、字符以及unicode码点信息.
 ### preview
 ![img.png](docs/1665852262349.png)
 ![img.png](docs/1665852309323.png)

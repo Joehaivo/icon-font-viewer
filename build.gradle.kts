@@ -11,9 +11,10 @@ repositories {
     }
 }
 
+version = "1.1.2"
+
 intellijPlatform {
     pluginConfiguration {
-        version = "1.1.2"
         description = """
             展示ttf字体文件内的icon(或者叫symbol)、字符以及unicode码点信息.<br><br>
             Display the icons (or symbols), characters, and Unicode code point information inside a TTF font file.<br>
@@ -46,7 +47,7 @@ dependencies {
     intellijPlatform {
 //        bundledPlugin("org.jetbrains.android")
         instrumentationTools()
-//        local("/Users/haivo/Applications/Android Studio.app/Contents")
+//        local("/Applications/Android Studio.app/Contents")
         local("/Applications/DevEco-Studio.app/Contents")
     }
 }

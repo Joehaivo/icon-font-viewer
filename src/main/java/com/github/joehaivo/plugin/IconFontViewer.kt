@@ -9,10 +9,8 @@ import com.intellij.openapi.util.Key
 import com.intellij.openapi.util.UserDataHolderBase
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.ui.components.JBList
-import com.intellij.ui.dsl.builder.Align
-import com.intellij.ui.dsl.builder.RightGap
-import com.intellij.ui.dsl.builder.bindText
-import com.intellij.ui.dsl.builder.panel
+import com.intellij.ui.components.JBTextField
+import com.intellij.ui.dsl.builder.*
 import org.apache.fontbox.ttf.TTFParser
 import org.apache.fontbox.ttf.TrueTypeFont
 import java.awt.Font
@@ -46,39 +44,8 @@ class IconFontViewer(var project: Project, var ttfFile: VirtualFile) : FileEdito
 
                     text("Search : ").gap(RightGap.SMALL)
                     textField().also { tf ->
-                        tf.component.document.addDocumentListener(object : DocumentListener {
-                            override fun insertUpdate(e: DocumentEvent?) {
-                                valueChanged()
-                            }
-
-                            override fun removeUpdate(e: DocumentEvent?) {
-                                valueChanged()
-                            }
-
-                            override fun changedUpdate(e: DocumentEvent?) {
-                                valueChanged()
-                            }
-
-                            fun valueChanged() {
-                                try {
-                                    val keyword = tf.component.text.trim().lowercase(Locale.getDefault())
-                                    iconVos.forEach { it.keyword = "" }
-                                    if (keyword.isBlank()) {
-                                        listModel.clear()
-                                        listModel.addAll(iconVos)
-                                        model.searchResultTip = ""
-                                    } else {
-                                        doSearch(keyword, listModel)
-                                    }
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                }
-                            }
-                        })
-                    }
-                    button("Search") {
-
-                    }
+                        setInputChangedListener(tf)
+                    }.gap(RightGap.SMALL)
                     text("").bindText(model::searchResultTip)
                 }
             }
@@ -90,9 +57,42 @@ class IconFontViewer(var project: Project, var ttfFile: VirtualFile) : FileEdito
         return pan
     }
 
+    private fun setInputChangedListener(tf: Cell<JBTextField>) {
+        tf.component.document.addDocumentListener(object : DocumentListener {
+            override fun insertUpdate(e: DocumentEvent?) {
+                valueChanged()
+            }
+
+            override fun removeUpdate(e: DocumentEvent?) {
+                valueChanged()
+            }
+
+            override fun changedUpdate(e: DocumentEvent?) {
+                valueChanged()
+            }
+
+            fun valueChanged() {
+                try {
+                    val keyword = tf.component.text.trim().lowercase(Locale.getDefault())
+                    iconVos.forEach { it.keyword = "" }
+                    if (keyword.isBlank()) {
+                        listModel.clear()
+                        listModel.addAll(iconVos)
+                        model.searchResultTip = ""
+                    } else {
+                        doSearch(keyword, listModel)
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        })
+    }
+
     private fun setUI() {
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, ttfFile.inputStream).deriveFont(30f)
+            // 此处更改icon大小
+            font = Font.createFont(Font.TRUETYPE_FONT, ttfFile.inputStream).deriveFont(35f)
             if (font == null) {
                 model.fontName = "Unable to parse the file."
                 return

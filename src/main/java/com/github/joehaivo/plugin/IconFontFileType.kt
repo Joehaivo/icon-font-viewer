@@ -3,6 +3,7 @@ package com.github.joehaivo.plugin
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.util.IconLoader
 import com.intellij.openapi.vfs.VirtualFile
+import org.jetbrains.annotations.NonNls
 import javax.swing.Icon
 
 class IconFontFileType : FileType {
@@ -34,7 +35,7 @@ class IconFontFileType : FileType {
         return false
     }
 
-    override fun getCharset(file: VirtualFile, content: ByteArray?): String? {
+    override fun getCharset(file: VirtualFile, content: ByteArray): @NonNls String? {
         return null
     }
 }

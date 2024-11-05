@@ -20,7 +20,7 @@ class IconItemRender(var myFont: Font) : JComponent(), ListCellRenderer<IconVo> 
     ): Component {
         return panel {
             row {
-                text(getHighlightText(iconVo.keyword, iconVo.postScript)).align(Align.CENTER)
+                cell(IconFontGlyph(myFont, iconVo)).align(Align.CENTER)
             }
             row {
                 text(getHighlightText(iconVo.keyword, iconVo.getCodePointTextHex())).align(Align.CENTER)
@@ -29,7 +29,7 @@ class IconItemRender(var myFont: Font) : JComponent(), ListCellRenderer<IconVo> 
                 text(getHighlightText(iconVo.keyword, iconVo.getCodePointTextInt())).align(Align.CENTER)
             }
             row {
-                cell(IconFontGlyph(myFont, iconVo)).align(Align.CENTER)
+                text(getHighlightText(iconVo.keyword, iconVo.postScript)).align(Align.CENTER)
             }
         }.withBorder(BorderFactory.createLineBorder(Colors.DISABLED_COLOR, 1, true))
     }
