@@ -17,9 +17,8 @@ class IconFontViewerProvider: FileEditorProvider, DumbAware {
     }
 
     override fun createEditor(project: Project, file: VirtualFile): FileEditor {
-        return IconFontViewerImpl(project, file)
+        return IconFontViewer(project, file)
     }
-
 
     override fun disposeEditor(editor: FileEditor) {
         Disposer.dispose(editor)

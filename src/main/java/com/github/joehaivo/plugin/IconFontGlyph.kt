@@ -34,11 +34,11 @@ class IconFontGlyph(
     }
 
     override fun getIconWidth(): Int {
-        return rectangle2D?.bounds?.width ?: 0
+        return rectangle2D?.bounds?.width ?: 80
     }
 
     override fun getIconHeight(): Int {
-        return rectangle2D?.bounds?.height ?: 0
+        return rectangle2D?.bounds?.height ?: 80
     }
 
     // --------------------JComponent---------------
@@ -51,10 +51,10 @@ class IconFontGlyph(
     }
 
     override fun getMinimumSize(): Dimension {
-        return rectangle2D?.bounds?.size ?: Dimension()
+        return rectangle2D?.bounds?.size ?: Dimension(80, 80)
     }
 
     override fun getPreferredSize(): Dimension {
-        return rectangle2D?.bounds?.size ?: Dimension()
+        return rectangle2D?.bounds?.size ?: Dimension(80, 80)
     }
 }

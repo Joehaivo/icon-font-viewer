@@ -1,74 +1,52 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.7.10"
-    id("org.jetbrains.intellij") version "1.9.0"
+    id("org.jetbrains.kotlin.jvm") version "1.9.24"
+    id("org.jetbrains.intellij.platform") version "2.0.1"
 }
 
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
-// https://github.com/JetBrains/gradle-intellij-plugin
-intellij {
-//    version.set("2021.2") // 设置debug时的idea版本
-//    type.set("IC") // Target IDE Platform
-    localPath.set("/Applications/Android Studio.app/Contents")
-    plugins.set(listOf("java"))
-}
-
-dependencies {
-//    implementation("org.apache.pdfbox:fontbox:2.0.27")
-}
-
-group = "com.github.Joehaivo"
-version = "1.0.8"
-
-tasks {
-//    instrumentCode {
-//        compilerVersion.set("211.7628.21")
-//    }
-    patchPluginXml {
-        pluginDescription.set("""
-            A plugin for displaying the svg icons and unicode of trueType (.ttf) file that usually containing icon glyphs.<br><br>
-            一个用来展示trueType(.ttf)文件中的SVG图标和unicode码点的插件<br>
+intellijPlatform {
+    pluginConfiguration {
+        version = "1.1.2"
+        description = """
+            展示ttf字体文件内的icon(或者叫symbol)、字符以及unicode码点信息.<br><br>
+            Display the icons (or symbols), characters, and Unicode code point information inside a TTF font file.<br>
             <img src="https://github.com/Joehaivo/icon-font-viewer/blob/master/docs/1665853268900.png?raw=true" alt="screenshot" width="400" height="271"><br>
             <a href="https://github.com/Joehaivo/icon-font-viewer">Github Source Code</a><br><br>
             <a href="https://github.com/Joehaivo/icon-font-viewer/blob/master/docs/iconfont.ttf?raw=true">Here is a sample icon font(.ttf) file</a><br>
             <a href="https://github.com/Joehaivo/icon-font-viewer/blob/master/docs/iconfont.ttf?raw=true">这有一个示例icon font(.ttf)文件</a><br>
             usage: open .ttf file to view.<br>
             用法：打开.ttf文件查看.<br><br>
-        """.trimIndent())
-        changeNotes.set("""
-        1.0.8: fix: display garbled text when searching; Compatible with earlier versions<br>
-        1.0.8: fix: 搜索时文字显示乱码; 兼容更早的版本<br>
-        """.trimIndent())
-        sinceBuild.set("201")
-        untilBuild.set("223")
+        """.trimIndent()
+        changeNotes = """
+            1.1.2: feat: 采用kotlin UI DSL 2写法重写界面<br>
+            1.0.8: fix: 搜索时文字显示乱码; 兼容更早的版本<br>
+        """.trimIndent()
+        ideaVersion.sinceBuild.set("201")
+        ideaVersion.untilBuild.set("242.*")
     }
-    buildSearchableOptions {
-        enabled = false
-    }
-    withType<JavaCompile> {
-        sourceCompatibility = "11"
-        targetCompatibility = "11"
-    }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "11"
-    }
+}
 
-//    jar {
-        // 将runtimeClasspath里的jar包(dependencies下的依赖)都打进jar中，打成Fat-jar
-//        from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
-//        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//    }
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-    }
+tasks.runIde {
+    jvmArgs = listOf("-Xmx4096m", "-XX:+UnlockDiagnosticVMOptions")
+}
 
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+dependencies {
+    intellijPlatform {
+//        bundledPlugin("org.jetbrains.android")
+        instrumentationTools()
+//        local("/Users/haivo/Applications/Android Studio.app/Contents")
+        local("/Applications/DevEco-Studio.app/Contents")
     }
 }
