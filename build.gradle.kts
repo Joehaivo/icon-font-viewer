@@ -11,7 +11,7 @@ repositories {
     }
 }
 
-version = "1.1.2"
+version = "1.1.5"
 
 intellijPlatform {
     pluginConfiguration {
@@ -26,10 +26,10 @@ intellijPlatform {
             用法：打开.ttf文件查看.<br><br>
         """.trimIndent()
         changeNotes = """
-            1.1.2: feat: 采用kotlin UI DSL 2写法重写界面<br>
+            1.1.3: feat: 采用kotlin UI DSL 2写法重写界面<br>
             1.0.8: fix: 搜索时文字显示乱码; 兼容更早的版本<br>
         """.trimIndent()
-        ideaVersion.sinceBuild.set("201")
+        ideaVersion.sinceBuild.set("223")
         ideaVersion.untilBuild.set("242.*")
     }
 }

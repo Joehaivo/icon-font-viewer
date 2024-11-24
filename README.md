@@ -14,3 +14,7 @@
 - open .ttf file to view.
 - 打开.ttf文件查看.
 
+### 捐赠
+- 如果你觉得此项目对你有帮助, 你可以选择请我喝杯咖啡, 谢谢
+- If you find this project helpful, you can buy me coffee! Thanks. (Alipay) 
+![alipay.jpg](docs/alipay.jpg)
